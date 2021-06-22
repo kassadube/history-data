@@ -4,7 +4,7 @@ import pandas as pd                # working with data frames
 import datetime as dt              # working with dates
 import matplotlib.pyplot as plt    # plot data
 import qgrid                       # display dataframe in notebooks 
-
+from IPython.display import display
 
 
 
@@ -36,11 +36,13 @@ def get_binance_bars(symbol, interval, startTime, endTime):
     df['adj_close'] = df['close']
      
     df.index = [dt.datetime.fromtimestamp(x / 1000.0) for x in df.datetime]
- 
+    pd.options.display.max_rows = 999
     return df
 
 
 df = get_binance_bars('ETHUSDT', '1h', dt.datetime(2020, 1, 1), dt.datetime(2020, 2, 1))
 
-print(df)
-df.to_csv("fo1.csv")
+display(df)
+#print(df)
+#df.style
+#df.to_csv("fo1.csv")
